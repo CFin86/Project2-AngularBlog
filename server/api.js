@@ -1,24 +1,13 @@
-//cmf  edited
-var app = angular.module("Blogger", ['ngRoute', 'ngResource', "Blogger.controllers", "Blogger.factories"]);
 
-app.config(["$routeProvider", function($routeProvider) {
-    $routeProvider.when("/", {
-        templateUrl: 'views/welcome.html',
-        controller: "WelcomeController"
-    })
-    .when('/compose', {
-        templateUrl: "views/compose.html",
-        controller: "ComposeController"
-    })
-    .when("/:id/update", {
-        templateUrl: "views/updater.html",
-        controller: "SingleController"
-    })
-    .when('/:id', {
-        templateUrl: "views/blogPost.html",
-        controller: "PostController"
-    })
-    .otherwise({
-        redirectTo: '/'
-    })
-}]);
+var express=require('express');
+var postCtrl = require("./controllers/posts.ctrl");
+var usersCtrl = require("./controllers/users.ctrl");
+var catCtrl =require('./controllers/categories.ctrl');
+
+var router = express.Router();
+
+router.use('/posts', postCtrl);
+router.use('/users', usersCtrl);
+router.use('/categories', catCtrl);
+
+module.exports =router;

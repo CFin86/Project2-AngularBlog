@@ -1,0 +1,18 @@
+<div class="pages">
+
+<input type="text" ng-model="title">
+
+<div>
+    <select ng-model="categoryid" >
+        <option value="1">Select a Category</option>
+        <option value="{{ cat.id }}" ng-repeat="cat in categories">{{ cat.name }}</option>
+    </select>
+    <select ng-model="userid"> 
+        <option value="">Select a User</option>
+        <option value="{{ u.id }}" ng-repeat="u in users">{{ u.firstname }} {{ u.lastname }}</option>
+    </select>
+</div>
+
+<textarea placeholder="start blogging" maxlength="5000" ng-model="Content"></textarea>
+<button ng-click="createPost()">Create Post!</button>
+</div>

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <!--cmf-->
-<html lang="en" ng-app="Blogger">
+<html lang="en" ng-app="AngularBlog">
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>blogger</title>
 </head>
+
 <body ng-view>
 
     <script src="https://code.angularjs.org/1.6.4/angular.js"></script>
     <script src="https://code.angularjs.org/1.6.4/angular-resource.js"></script>
     <script src="https://code.angularjs.org/1.6.4/angular-route.js"></script>
-    <script src="app.js"></script>
-    <script src="controller.js"></script>
-    <script src="factories.js"></script>
+    <script src="./app.js"></script>
+    <script src="./controller.js"></script>
+    <script src="./factories.js"></script>
+    <script src="./services.js"></script>
 </body>
 </html>
