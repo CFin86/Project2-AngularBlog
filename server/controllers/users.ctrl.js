@@ -1,11 +1,14 @@
 var express = require("express");
 var userProc = require('../procedures/users.proc');
 var passport = require('passport');
-var authMw = require("../middleware/auth.mw")
+var authMw = require("../middleware/auth.mw.js")
+var utils = require("../config/utils.js");
+
 var router = express.Router();
 
+
 router.get("/", function (req, res) {
-    return procedures.all().then(function (data) {
+    return userProc.all().then(function (data) {
         res.send(data);
     }, function (err) {
         console.log(err);
@@ -37,12 +40,23 @@ router.get('/logout', function(req, res) {
     });
 });
 
-router.get("*", authMw.isLoggedIn);
+router.all("*", authMw.isLoggedIn);
 
-router.get("/", function(req, res){
+router.get("/", authMw.isAdmin, function(req, res){
     userProc.all().then(function(data){
         res.send(data);
     }, function(err){
+        console.log(err);
+        res.status(500).send(err);
+    })
+});
+
+router.post("/", authMw.isAdmin, function(req, res){
+    var hash = utils.encryptedPassword(req.body.password)
+    userProc.write(req.body.firstname, req.body.lastname, req.body.email, hash)
+    .then(function(id){
+        res.send(id);
+    }, function(err) {
         console.log(err);
         res.status(500).send(err);
     })

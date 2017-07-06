@@ -1,7 +1,7 @@
 //wed july 5th
 var express= require('express');
-var authMw = require("../middleware/auth.mw")
-var postProc = require("../procedures/posts.proc")
+var authMw = require("../middleware/auth.mw.js")
+var postProc = require("../procedures/posts.proc.js")
 
 var router = express.Router();
 

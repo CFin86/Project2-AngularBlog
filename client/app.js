@@ -1,5 +1,7 @@
 //cmf  edited
-var app = angular.module("AngularBlog", ['ngRoute', 'ngResource', "AngularBlog.controllers", "AngularBlog.factories", "AngularBlog.services"])
+var app = angular.module("AngularBlog", ['ngRoute', 'ngResource',
+ "AngularBlog.controllers", "AngularBlog.factories", 
+ "AngularBlog.services", "AngularBlog.directives"])
 
 app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);

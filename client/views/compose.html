@@ -1,18 +1,17 @@
-<div class="pages">
 
+<h1>YAY IT FUCKING WORKED</h1>
+<h1>Compose a new Post</h1>
+<hr>
 <input type="text" ng-model="title">
-
-<div>
-    <select ng-model="categoryid" >
-        <option value="1">Select a Category</option>
-        <option value="{{ cat.id }}" ng-repeat="cat in categories">{{ cat.name }}</option>
-    </select>
-    <select ng-model="userid"> 
-        <option value="">Select a User</option>
-        <option value="{{ u.id }}" ng-repeat="u in users">{{ u.firstname }} {{ u.lastname }}</option>
-    </select>
-</div>
-
-<textarea placeholder="start blogging" maxlength="5000" ng-model="Content"></textarea>
+<br>
+<select ng-model="categoryId">
+    <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
+</select>
+<br>
+<select ng-model="userId">
+    <option ng-repeat="user in users" value="{{user.id}}">{{user.firstname}}</option>
+</select>
+<br>
+<textarea ng-model="content" cols="30" rows="10"></textarea>
+<br>
 <button ng-click="createPost()">Create Post!</button>
-</div>

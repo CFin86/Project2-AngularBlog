@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "api": "^0.8.0",
+    "bcrypt": "^1.0.2",
     "cookie-parser": "^1.4.3",
     "express-mysql-session": "^1.2.1",
     "express-session": "^1.15.3",

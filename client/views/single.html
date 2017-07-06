@@ -1,0 +1,11 @@
+<h1>THIS IS THE PAGE FOR A SINGLE BLOG POST </h1>
+{{post.title}}
+
+Posted By {{post.authorfirstname}} {{post.authorlastname}}
+
+Posted In {{post.categoryname}} {{post.createdAt | date:'short'}}
+
+{{post.content}}
+
+
+<button ng-click="deletePost()"> DELETE </button>

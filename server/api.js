@@ -10,4 +10,4 @@ router.use('/posts', postCtrl);
 router.use('/users', usersCtrl);
 router.use('/categories', catCtrl);
 
-module.exports =router;
+module.exports = router;

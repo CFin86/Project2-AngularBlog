@@ -1,5 +1,5 @@
 var express = require("express");
-var catProc = require("../procedures/categories.proc");
+var catProc = require("../procedures/categories.proc.js");
 
 var router = express.Router();
 

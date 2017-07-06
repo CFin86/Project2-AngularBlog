@@ -5,7 +5,7 @@ var pool = mysql.createPool({
     connectionLimit: 10,
     host: "localhost",
     user: "bloguser",
-    password: process.env.DB_PASSWORD,
+    password: 'xxx',
     database: "AngularBlog"
 });
 
@@ -37,6 +37,7 @@ function callProcedure(procedure, values) {
             } else {
                 pool.query(createQueryString(procedure, values),
                  values, function(err, results) {
+                     connection.release();
                     if(err) {
                         reject(err);
                     } else {

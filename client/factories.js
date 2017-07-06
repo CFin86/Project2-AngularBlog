@@ -4,14 +4,8 @@ angular.module("AngularBlog.factories", ["ngResource"])
         return $resource("http://localhost:3000/api/users/:id",{id: "@id"});
     }])
 
-    .factory("Category", ["$resource", function($resource) {
-        return $resource("http://localhost:3000/api/categories/:id", 
-        {
-            id: "@id"
-        },
-        {
-            'update': {method: "PUT"}
-        })
+    .factory("Category", ['$resource', function($resource) {
+        return $resource("http://localhost:3000/api/categories/:id", {id: "@id"});
     }])
 
     .factory("Post", ["$resource", function($resource) {

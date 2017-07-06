@@ -1,26 +1,34 @@
 var express = require("express");
-var passport =require("passport");
+var passport = require("passport");
 var session = require("express-session");
 var MySQLStore = require("express-mysql-session")(session);
 var LocalStrategy = require('passport-local').Strategy;
 var userProc = require('../procedures/users.proc');
+var utils = require("./utils.js");
 var pool = require('./db').pool;
 
-function configurePassport(app){
+function configurePassport(app) {
 
     passport.use(new LocalStrategy({
             usernameField: 'email',
             passwordFields: 'password'
-    }, function(email, password, done){
+    }, function(email, password, done) {
+
         userProc.readByEmail(email).then(function(user){
             if(!user){
                 return done(null, false);
             }
-            if (user.password !== password){
-                return done(null, false, {message: "Nope!"});
-            }
-            return done(null, user);
-        },function(err) {
+            utils.checkPassword(password, user.password)
+            .then(function(matches){
+                if(matches){
+                    return done (null, user);
+                } else {
+                    return done(null, false, {message: "Nope!"});
+                }
+            }, function(err) {
+                return done(err);
+            })
+        }, function(err) {
             return done(err);
         });
     }));
@@ -40,7 +48,7 @@ function configurePassport(app){
         createDatabaseTable: true
     }, pool);
     app.use(session({
-    secret: process.env.RANDOMLY_GENERATED_STRING,
+    secret: 'process.env.RANDOMLY_GENERATED_STRING',
     store: sessionsStore,
     resave: false,
     saveUninitialized: false
