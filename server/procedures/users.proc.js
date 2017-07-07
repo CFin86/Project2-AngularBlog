@@ -16,6 +16,14 @@ exports.write= function(first, last, email, password) {
     return db.row("CreateUser", [first, last, email, password]);
 }
 
-exports.updatePw = function(id, hash) {
-    return db.empty("UpdatePassword", [id, hash]);
+exports.updateEmail = function(id, email) {
+    return db.empty("UpdateEmail", [id, email]);
+}
+
+exports.updatePassword = function(id, password) {
+    return db.empty("UpdatePassword", [id, password])
+}
+
+exports.delete =  function(id) {
+    return db.empty("DeleteUser", [id]);
 }

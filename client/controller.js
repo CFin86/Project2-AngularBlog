@@ -1,26 +1,36 @@
 angular.module("AngularBlog.controllers", [])
 
-    .controller("ListController", ["$scope", 'Post', 'UserService', "Category",
-     function ($scope, Post, UserService, Category) {
-        UserService.requireLogin();
-        $scope.posts = Post.query();
-         $scope.categories = Category.query();
-        console.log($scope.posts);
-        console.log($scope.categories);
-            console.log($scope.users);
-        $scope.redirect = function () {
-            window.location.pathname = "/compose";
-        }
+    .controller("ListController", ["$scope", 'Post', 'UserService', "Category", "$routeParams",
+        function ($scope, Post, UserService, Category, $routeParams) {
+            UserService.requireLogin();
+            $scope.posts = Post.query();
+            $scope.categories = Category.query();
 
-    }])
 
-    .controller("ComposeController", ["$scope", "Post", "User", "Category", "UserService", 
+            $scope.logout = function () {
+                UserService.logout();
+                window.location.pathname = "/login";
+
+            };
+
+            $scope.compose = function () {
+                window.location.pathname = "/compose";
+            };
+
+            $scope.singleFunc = function () {
+                //window.location.pathname = "/" + $routeParams.id;
+                console.log($scope.posts);
+            }
+
+        }])
+
+    .controller("ComposeController", ["$scope", "Post", "User", "Category", "UserService",
         function ($scope, Post, User, Category, UserService) {
             UserService.requireLogin();
 
             $scope.categories = Category.query();
             $scope.users = User.query();
-    
+
             console.log($scope.categories);
             //console.log($scope.users);
 
@@ -41,7 +51,7 @@ angular.module("AngularBlog.controllers", [])
             }
         }])
 
-    .controller("UpdateController", ['$scope', "Post", 'Category', '$routeParams',
+    .controller("UpdateController", ['$scope', "Post", "User", "Category", "UserService",
         function ($scope, Post, Category, $routeParams) {
             $scope.post = Post.get({ id: $routeParams.id });
             $scope.categories = Category.query();
@@ -49,16 +59,25 @@ angular.module("AngularBlog.controllers", [])
             $scope.updatePost = function () {
                 $scope.post.$update(function () {
                     window.location.pathname = "/" + $routeParams.id;
+                    //match this controller with your "SingleController"    
                 })
             }
         }])
 
 
-    .controller("SingleController", ["$scope", "$routeParams", "Post",
-        function ($scope, $routeParams, Post) {
-            $scope.post = Post.get({ id: $routeParams.id });
+    .controller("SingleController", ["$scope", "$routeParams", "$location",
+        "Post", "UserService", "Category", "User",
+        function ($scope, $routeParams, $location, Post, UserService, Category, User) {
+            // $scope.posts = Post.query();
+            $scope.posts = Post.get({ id: $routeParams.id });
+
+            console.log($scope.posts);
+            $scope.direct = function () {
+                window.location.pathname = "./" + $routeParams.id + "/update";
+            }
+
             $scope.deletePost = function () {
-                if (confirm("Are yo sure you want to delete this post?")) {
+                if (confirm("Are you sure you want to delete this post?")) {
                     $scope.post.$delete(function () {
                         window.location.pathname = "/"
                     })
@@ -81,6 +100,9 @@ angular.module("AngularBlog.controllers", [])
                     console.log(err);
                 })
             }
+            $scope.newUser = function () {
+                window.location.pathname = "/newUser"
+            };
 
             function redirect() {
                 var dest = $location.search().p;
@@ -88,3 +110,56 @@ angular.module("AngularBlog.controllers", [])
                 $location.path(dest).search('p', null).replace();
             }
         }])
+    .controller("UserController", ['$scope', "User", "UserService",
+        function ($scope, User, UserService) {
+            UserService.requireLogin();
+            $scope.users = User.query();
+
+            $scope.createUser = function () {
+                new User({
+                    firstname: $scope.firstname,
+                    lastname: $scope.lastname,
+                    email: $scope.email,
+                    password: $scope.password
+                }).$save(function () {
+                    $scope.users = User.query();
+                })
+            }
+
+            $scope.deleteUser = function () {
+                new User().$delete({ id: id });
+            }
+            $scope.editEmail = function (id) {
+                var newEmail = prompt("Enter a new email address for user with id of " + id);
+                if (newEmail) {
+                    var user = User.get({ id: id });
+                    user.email = newEmail;
+                    User.update({ id: id }, user);
+                }
+            }
+             $scope.editPassword = function (id) {
+                var newPass = prompt("Enter a new password for user with id of " + id);
+                if (newPass) {
+                    var user = User.get({ id: id });
+                    user.password = newPass;
+                    User.update({ id: id }, user);
+                }
+            }
+
+        }])
+
+    // .controller("NewUserController", ['$scope', 'User', '$location', 'UserService',
+    //     function ($scope, User, $location, UserService) {
+    //         UserService.requireLogin();
+
+    //     }])
+
+
+    // SEOService.setSEO({
+    //     //friday lecture add this later
+	// 	title: 'Contact Us',
+	// 	image: 'http://' + $location.host() + '/images/contact-us-graphic.png',
+	// 	url: $location.url(),
+	// 	description: 'A description of this page'
+	// })
+// }]);

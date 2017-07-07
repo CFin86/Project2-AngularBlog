@@ -8,18 +8,23 @@ var routeMW = require("./middleware/route.mw")
 var clientPath = path.join(__dirname, '../client');
 var cookieParser = require("cookie-parser");
 var configurePassport = require("./config/passport");
-var api = require('./api');
-var utils = require('./config/utils.js')
-
-var app = express();
-
 var userProc = require("./procedures/users.proc");
+var api = require('./api');
+var utils = require('./config/utils.js');
+var prerender = require('prerender-node');
+
+
+prerender.set('prerenderServiceUrl', 'http://localhost:1337/');
+prerender.set('prerenderToken', 'Y2ljUX08lEV2mHIMOnxu');
 
 app.use(express.static(clientPath));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(prerender);
 
 configurePassport(app);
+
+
 //
 // userProc.all().then(function (users) {
 //     users.forEach(function (user) {

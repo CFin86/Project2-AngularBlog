@@ -5,4 +5,11 @@
             restrict: "E",
            
         }
+    })
+    
+    .directive("singlePost", function(){
+        return {
+            templateUrl: "../directives/single.html",
+            restrict: "E",
+        }
     });

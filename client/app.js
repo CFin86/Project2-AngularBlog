@@ -27,6 +27,14 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
         templateUrl: "views/single.html",
         controller: "SingleController"
     })
+    .when('/newUser',{
+        templateUrl: "/views/newUser.html",
+        controller: "NewUserController"
+    })
+    .when('/user',{
+        templateUrl: "/views/user.html",
+        controller: "UserController"
+    })
     .otherwise({
         redirectTo: '/'
     });

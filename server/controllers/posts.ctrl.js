@@ -31,6 +31,7 @@ router.route('/:id')
         postProc.read(req.params.id).then(function(data) {
             res.send(data);
         }, function(err) {
+             console.log("Error is here 34");
             console.log(err);
             res.status(500).send(err);
         })
@@ -38,8 +39,10 @@ router.route('/:id')
     .put(function(req, res) {
         postProc.update(req.params.id, req.body.title, req.body.categoryId, req.body.content)
             .then(function() {
+                 console.log("Error is here 44");
                 res.sendStatus(204);
             }, function(err) {
+                
                 console.log(err);
                 res.status(500).send(err);
             })
