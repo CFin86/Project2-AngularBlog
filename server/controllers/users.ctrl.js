@@ -63,10 +63,11 @@ router.get("/", authMw.isAdmin, function (req, res) {
                 })
     })
 })
-    
-router.get('/me', function (req, res) {
-    res.send(req.user);
-});
+
+router.route("/me")
+    .get(function(req, res){
+        res.send(req.user);
+    })
 
 router.route("/:id")
     .get(authMw.isAdmin, function(req, res){

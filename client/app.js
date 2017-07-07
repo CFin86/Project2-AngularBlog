@@ -31,7 +31,7 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
         templateUrl: "/views/newUser.html",
         controller: "NewUserController"
     })
-    .when('/user',{
+    .when('/:id/user',{
         templateUrl: "/views/user.html",
         controller: "UserController"
     })

@@ -1,7 +1,7 @@
 var db = require('../config/db');
 
-exports.all =function(){
-    return db.rows('GetAllPosts', []);
+exports.all = function() {
+    return db.rows("GetAllPosts", []);
 }
 
 exports.read = function(id){

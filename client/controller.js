@@ -110,10 +110,11 @@ angular.module("AngularBlog.controllers", [])
                 $location.path(dest).search('p', null).replace();
             }
         }])
+
     .controller("UserController", ['$scope', "User", "UserService",
         function ($scope, User, UserService) {
             UserService.requireLogin();
-            $scope.users = User.query();
+            $scope.user = Post.get({id: $routeParams.id});
 
             $scope.createUser = function () {
                 new User({

@@ -12,7 +12,7 @@ exports.read = function(id) {
 	return db.row('GetSingleUser', [id]);
 }
 
-exports.write= function(first, last, email, password) {
+exports.write = function(first, last, email, password) {
     return db.row("CreateUser", [first, last, email, password]);
 }
 
@@ -24,6 +24,6 @@ exports.updatePassword = function(id, password) {
     return db.empty("UpdatePassword", [id, password])
 }
 
-exports.delete =  function(id) {
+exports.delete = function(id) {
     return db.empty("DeleteUser", [id]);
 }
