@@ -1,10 +1,16 @@
-<div ng-repeat="post in posts">
-<h1>This is a new user page</h1>
+<my-Header></my-Header>
+<h3>This is a new user page</h3>
 
-<br>
-<input type="text" ng-model="email" placeholder="User email goes here"> </input>
-<br>
-<input type="text" ng-model="password" placeholder="User password goes here"> </input>
-<br>
-<button ng-click="createUser()">Create New User</button>  
+<div class="input-group">
+    <input type="email" ng-model="email" placeholder="New User email goes here"> </input>
+    <br>
+    <input type="password" ng-model="password" placeholder="User password goes here"> </input>
+    <br>
+    <input type="text" ng-model="firstname" placeholder="Your first name">
+    <br>
+    <input type="text" ng-model="lastname" placeholder="Your last name">
+    <br>
+    {{user.authorfirstname}}
+    <button ng-click="createUser()">Create New User</button>
+    <button ng-click="working()">IS this thing on?</button>
 </div>

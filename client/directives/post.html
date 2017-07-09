@@ -1,9 +1,0 @@
-
-    <h3>{{post.title}}</h3>
-    <button ng-click="compose()">Compose</button>
-    <h5>{{post.categoryname}}</h5>
-    {{post.userid}}
-    <a ng-href="/user">{{post.authorfirstname}} {{post.authorlastname}}</a>
-    <h5>    {{post.createdAt| date: 'medium' }} </h5>
-    {{post.id}}
-    <a ng-href="/{{post.id}}">Read</a> <button ng-click="logout()">Log out</button>

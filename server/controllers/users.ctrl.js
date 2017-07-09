@@ -14,7 +14,19 @@ router.get("/", function (req, res) {
         console.log(err);
         res.status(500).send(err);
     })
-});
+})
+
+// router.post('/newuser', function(req, res) {
+//         var u = req.body;
+
+//         userProc.write(u.email, u.password, u.firstname, u.lastname)
+//         .then(function(id) {
+//             res.send(id);
+//         }, function(err) {
+//             console.log(err);
+//             res.sendStatus(500);
+//         });
+// })
 
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
@@ -22,6 +34,7 @@ router.post('/login', function (req, res, next) {
             console.log(err); return res.sendStatus(500);
         }
         if (!user) {
+         console.log("bitch you aint getting in")
             return res.status(401).send(info);
         }
         req.logIn(user, function (err) {
@@ -32,14 +45,16 @@ router.post('/login', function (req, res, next) {
             }
         });
     })(req, res, next);
-});
+})
+
 
 router.get('/logout', function (req, res) {
     req.session.destroy(function () {
         req.logOut();
         res.sendStatus(204);
     });
-});
+})
+
 
 router.all("*", authMw.isLoggedIn);
 

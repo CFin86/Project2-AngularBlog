@@ -10,7 +10,11 @@
         "Onxu",
         "gdsjhfskjh",
         "firstname",
-        "lastname"
+        "lastname",
+        "Blogular",
+        "newuser",
+        "        resave: false,\n",
+        "resave"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.

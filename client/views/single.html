@@ -1,4 +1,4 @@
-
+<my-header> </my-header>
 {{posts.title}}
 
 <h5>Posted By {{posts.authorfirstname}} {{posts.authorlastname}} </h5>
@@ -11,5 +11,5 @@
 <button ng-click="deletePost()"> DELETE </button>
 <br>
 <br>
-<a ng-href="/{{post.id}}/update"><button>Edit</button></a>
+<a ng-href="/{{posts.id}}/update"><button>Edit</button></a>
 </div>

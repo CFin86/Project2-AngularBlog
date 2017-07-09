@@ -1,8 +1,4 @@
-<div class="input-group">
-        <input type="text" ng-model="firstname" placeholder="firstname">
-        <br>
-        <input type="text" ng-model="lastname" placeholder="lastname">
-        <br>
+
         <input type="email" ng-model="email" placeholder="email">
         <br>
         <input type="password" ng-model="password" placeholder="password">
@@ -12,9 +8,9 @@
         <br>
         <hr>
 </div>
-<div ng-repeat="user in users">
-    <h2>{{user.firstname}  {{user.lastname}}</h2>
-    <!--<h3>{{user.email}}</h3>-->
+<div ng-repeat="u in user">
+    <h2>{{u.firstname}}  {{u.lastname}}</h2>
+    <h3>{{user.email}}</h3>
     <input type="email" ng-model="">
     <button ng-click="editEmail(user.id)">Edit Email</button>
     <buttonng-click="">Edit Password</button>

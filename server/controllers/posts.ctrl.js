@@ -1,4 +1,3 @@
-//wed july 5th
 var express= require('express');
 var authMw = require("../middleware/auth.mw.js")
 var postProc = require("../procedures/posts.proc.js")
@@ -14,7 +13,6 @@ router.route('/')
  res.send(data);
         }, function(err) {
             console.log(err);
-            console.log("It's right here")
             res.status(500).send(err);
         });
     })
@@ -33,7 +31,6 @@ router.route('/:id')
         postProc.read(req.params.id).then(function(data) {
             res.send(data);
         }, function(err) {
-             console.log("Error is here 34 post.ctrl.");
             console.log(err);
             res.status(500).send(err);
         })
@@ -41,7 +38,6 @@ router.route('/:id')
     .put(function(req, res) {
         postProc.update(req.params.id, req.body.title, req.body.categoryId, req.body.content)
             .then(function() {
-                 console.log("Error is here 44 post.ctrl");
                 res.sendStatus(204);
             }, function(err) {
                 

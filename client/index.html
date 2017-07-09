@@ -7,8 +7,7 @@
     <meta name="fragment" content="!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <title>blogger</title>
+   
 
     <title>{{ seo.title }}</title>
 <meta property="og:title" content="{{ seo.title }}">
@@ -17,11 +16,14 @@
 <meta property="twitter:image" content="{{seo.image}}">
 <meta property="og:url" content="{{ seo.url }}">
 <meta property="twitter:url" content="{{ seo.url }}">
-<meta property="description" content="{{seo.descri……">
+<meta property="description" content="{{seo.description}}">
 
 </head>
 
-<body ng-view>
+<body>
+
+<div ng-view>
+</div>
 
     <script src="https://code.angularjs.org/1.6.4/angular.js"></script>
     <script src="https://code.angularjs.org/1.6.4/angular-resource.js"></script>
@@ -29,7 +31,7 @@
     <script src="./app.js"></script>
     <script src="./controller.js"></script>
     <script src="./factories.js"></script>
-    <script src="./services.js"></script>
-    <script src="./directives.js"></script>
+    <script src="./service/services.js"></script>
+    <script src="./directives/directives.js"></script>
 </body>
 </html>
