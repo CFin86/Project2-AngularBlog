@@ -16,16 +16,16 @@ angular.module('AngularBlog.services', [])
             }
         };
 
-        this.birthUser = function(email, password, firstname, lastname){
-            return $http({
-                method: "POST",
-                url: "http://localhost:3000/api/users/newuser",
-                data: {email: email, password: password, firstname: firstname, lastname: lastname}
-            }).then(function (success){
-                user = success.data;
-                return success.data;
-            });
-        };
+        // this.birthUser = function(email, password, firstname, lastname){
+        //     return $http({
+        //         method: "POST",
+        //         url: "http://localhost:3000/api/users/newuser",
+        //         data: {email: email, password: password, firstname: firstname, lastname: lastname}
+        //     }).then(function (success){
+        //         user = success.data;
+        //         return success.data;
+        //     });
+        // };
 
     this.login = function (email, password) {
             return $http({

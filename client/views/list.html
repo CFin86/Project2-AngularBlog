@@ -1,15 +1,14 @@
 <my-Header> </my-Header>
 
-
+<button ng-click="admin()">admin delete shit button</button>
 <div ng-repeat="post in posts">
-    <buton ng-click="admin()">admin delete shit button</buton>
 
     <h3>{{post.title}}</h3>
+    <br>
     <button ng-click="compose()">Compose</button>
     <h5>{{post.categoryname}}</h5>
-    {{post.userid}}
+   <!-- {{post.userid}} -->
     <a ng-href="/{{post.userid}}/user">{{post.authorfirstname}} {{post.authorlastname}}</a>
     <h5>    {{post.createdAt| date: 'medium' }} </h5>
-    {{post.id}}
        <a ng-href="/{{post.id}}">Read</a> <button ng-click="logout()">Log out</button>
 

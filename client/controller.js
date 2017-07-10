@@ -14,15 +14,15 @@ angular.module("AngularBlog.controllers", ['ngRoute'])
                 window.location.pathname = "/compose";
             };
             $scope.admin = function () {
-                window.location.pathname = "./user";
+                window.location.pathname = "/" + $routeParams.id + "/user";
             };
-                SEOService.setSEO({
-                    title: 'Blogular with SEO',
-                    image: 'https://tinyurl.com/yd8o2lwr',
-                    url: location.url(),
-                    description: 'This is a blog to post all of your negative feelings'
-                });
-            }])
+            SEOService.setSEO({
+                title: 'Blogular with SEO',
+                image: 'https://tinyurl.com/yd8o2lwr',
+                url: location.url(),
+                description: 'This is a blog to post all of your negative feelings'
+            });
+        }])
     //COMPOSE CONTROLLER COMPOSE CONTROLLER COMPOSE CONTROLLER
     .controller("ComposeController", ["$scope", "Post", "User", "Category", "UserService", "SEOService", "$location",
         function ($scope, Post, User, Category, UserService, SEOService, $location) {
@@ -144,9 +144,20 @@ angular.module("AngularBlog.controllers", ['ngRoute'])
         }])
     //USER CONTROLLER USER CONTROLLER USER CONTROLLER 
     .controller("UserController", ['$scope', "User", "UserService", "SEOService", "$location",
-        function ($scope, User, UserService, SEOService, location) {
+        function ($scope, User, UserService, SEOService, $location) {
             UserService.requireLogin();
             $scope.user = User.query();
+
+            $scope.createUser = function () {
+                new User({
+                    firstname: $scope.firstname,
+                    lastname: $scope.lastname,
+                    email: $scope.email,
+                    password: $scope.password
+                }).$save(function () {
+                    $scope.users = User.query();
+                })
+            }
 
             $scope.deleteUser = function () {
                 new User().$delete({ id: id });
@@ -180,20 +191,12 @@ angular.module("AngularBlog.controllers", ['ngRoute'])
     .controller("NewUserController", ['$scope', 'User', '$location', 'UserService', "SEOService",
         function ($scope, User, $location, UserService, SEOService) {
             $scope.user = User.query();
-            UserService.birthUser();
+
+
             $scope.working = function () {
                 console.log("yes your controller is working");
             }
-            $scope.createUser = function () {
-                new User({
-                    firstname: $scope.firstname,
-                    lastname: $scope.lastname,
-                    email: $scope.email,
-                    password: $scope.password
-                }).$save(function () {
-                    $scope.users = User.query();
-                })
-            }
+
 
             SEOService.setSEO({
                 title: 'Blogular with SEO',

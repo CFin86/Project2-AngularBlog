@@ -4,10 +4,15 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 var mysql = require('mysql');
+
 var routeMW = require("./middleware/route.mw")
+
 var clientPath = path.join(__dirname, '../client');
+
 var cookieParser = require("cookie-parser");
+
 var configurePassport = require("./config/passport");
+
 var userProc = require("./procedures/users.proc");
 var api = require('./api');
 var utils = require('./config/utils.js');
